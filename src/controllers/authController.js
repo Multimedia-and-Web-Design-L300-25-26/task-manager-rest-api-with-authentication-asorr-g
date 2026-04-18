@@ -1,12 +1,8 @@
-import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
-const router = express.Router();
-
-// POST /api/auth/register
-router.post("/register", async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -26,10 +22,9 @@ router.post("/register", async (req, res) => {
   } catch (err) {
     return res.status(500).json({ message: "Server error" });
   }
-});
+};
 
-// POST /api/auth/login
-router.post("/login", async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -46,6 +41,4 @@ router.post("/login", async (req, res) => {
   } catch (err) {
     return res.status(500).json({ message: "Server error" });
   }
-});
-
-export default router;
+};
